@@ -6,3 +6,85 @@ body {
 a {
   color: #00B7FF;
 }
+
+#Carousel {
+  background: #f6f6f6;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+
+  padding: 10px;
+}
+
+#Carousel nav {
+  line-height: 300px;
+}
+
+#Carousel #Last {
+  float: left;
+}
+
+#Carousel #Next {
+  float: right;
+}
+
+#Listings {
+  height: 260px;
+  overflow: hidden;
+}
+
+#Listings li {
+  border: 1px solid #f6f6f6;
+  background: #ffffff;
+
+  /* nice to haves, not needed for IE8 */
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(66, 66, 66, 0.1);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(66, 66, 66, 0.1);
+  box-shadow: 1px 1px 5px 0px rgba(66, 66, 66, 0.1);
+
+  display: block;
+  float: left;
+  height: 250px;
+  list-style: none;
+  overflow: hidden;
+  margin: 5px;
+  width: 300px;
+}
+
+#Listings li a {
+  text-decoration: none;
+}
+
+#Listings li .title {
+  color: #000066;
+  font: 18px/22px Arial, Verdana, sans-serif;
+}
+
+#Listings li .image-holder {
+  border-bottom: 1px solid #f6f6f6;
+  position: relative;
+  overflow: hidden;
+  height: 175px;
+}
+
+#Listings li img {
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  left: 50%;
+  max-width: 300px;
+  max-height: 300px;
+  position: relative;
+  top: 50%;
+}

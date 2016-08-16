@@ -77,11 +77,11 @@ var FeTest = (function() {
     }
 
     function renderListing(listing) {
-      return '<li>'
-              + '<img src="' + listing.img + '" />'
+      return '<li><a href="#">'
+              + '<div class="image-holder"><img src="' + listing.img + '" /></div>'
               + '<span class="title">' + listing.title + '</span>'
               + '<span class="price">' + listing.price + '</span>'
-            + '</li>';
+            + '</a></li>';
     }
 
     return {
