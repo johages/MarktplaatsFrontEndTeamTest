@@ -29,7 +29,7 @@ var FeTest = (function() {
 
   var Carousel = (function() {
     var dom = {},
-        currentAd = 0,
+        currentListing = 0,
         filter = 'cars';
 
     function cache() {
@@ -37,54 +37,58 @@ var FeTest = (function() {
         last: document.getElementById('Last'),
         next: document.getElementById('Next')
       };
-      dom.adsContainer = document.getElementById('Ads');
+      dom.listingsContainer = document.getElementById('Listings');
     }
 
     function bindListeners() {
-      dom.buttons.next.addEventListener('click', nextAds);
-      dom.buttons.last.addEventListener('click', lastAds);
+      dom.buttons.next.addEventListener('click', nextListings);
+      dom.buttons.last.addEventListener('click', lastListings);
     }
 
-    function nextAds(e) {
+    function nextListings(e) {
       e.preventDefault();
     }
 
-    function lastAds(e) {
+    function lastListings(e) {
       e.preventDefault();
-      currentAd = 0;
+      currentListing = 0;
     }
 
-    function getAds() {
+    function getListings() {
       FeTest.SimpleAjax.init({
         url: '/data/data.json',
-        onSuccess: renderAds
+        onSuccess: renderListings
       });
     }
 
-    function renderAds(response) {
-      var ads = '';
+    function renderListings(response) {
+      var listings = '';
       for (var i = 0; response.length > i; i++) {
-        if (adMeetsFilter(response[i]) === true) {
-          ads += renderAd(response[i]);
+        if (listingMeetsFilter(response[i]) === true) {
+          listings += renderListing(response[i]);
         }
       }
-      console.log(ads);
-      dom.adsContainer.innerHTML = ads;
+      console.log(listings);
+      dom.listingsContainer.innerHTML = listings;
     }
 
-    function adMeetsFilter(ad) { 
-      return ad.category === filter;
+    function listingMeetsFilter(listing) { 
+      return listing.category === filter;
     }
 
-    function renderAd(ad) {
-      return '<li>' + ad.title + '</li>';
+    function renderListing(listing) {
+      return '<li>'
+              + '<img src="' + listing.img + '" />'
+              + '<span class="title">' + listing.title + '</span>'
+              + '<span class="price">' + listing.price + '</span>'
+            + '</li>';
     }
 
     return {
       init: function() {
         cache();
         bindListeners();
-        getAds();
+        getListings();
       }
     }
   })();
