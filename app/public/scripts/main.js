@@ -1,5 +1,9 @@
 var FeTest = (function() {
 
+  /**
+   * @name SimpleAjax
+   * A simple ajax module that handles the onload callback
+   */
   var SimpleAjax = (function() {
 
     function makeRequest(options) {
@@ -21,12 +25,24 @@ var FeTest = (function() {
     }
 
     return {
+      /**
+      * @name init
+      * Checks if a specific banner requires text ads back fill
+      * @constructor
+      * @param {Object} options Object of options to make ajax request
+      * @param {String} options.url String of url target for ajax request
+      * @param {Function} options.onSuccess Callback function for onload
+      */
       init: function(options) {
         makeRequest(options);
       }
     }
   })();
 
+  /**
+   * @name Carousel
+   * Renders the carousel of listings with navigation functionality
+   */
   var Carousel = (function() {
     var dom = {},
         currentListing = 0,
@@ -94,6 +110,11 @@ var FeTest = (function() {
     }
 
     return {
+      /**
+      * @name init
+      * Initialize the Carousel module, caching dom selectors, setting listeners and grabbing listings
+      * @constructor
+      */
       init: function() {
         cache();
         bindListeners();
