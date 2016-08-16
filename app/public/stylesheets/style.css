@@ -1,5 +1,6 @@
 body {
-  padding: 50px;
+  padding: 0;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -35,6 +36,8 @@ a {
 #Listings {
   height: 260px;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 #Listings li {
@@ -66,9 +69,26 @@ a {
   text-decoration: none;
 }
 
+#Listings li .details {
+  padding: 10px 15px;
+}
+
 #Listings li .title {
   color: #000066;
-  font: 18px/22px Arial, Verdana, sans-serif;
+  display: block;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#Listings li .price {
+  color: #a5d14a;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 17px;
 }
 
 #Listings li .image-holder {

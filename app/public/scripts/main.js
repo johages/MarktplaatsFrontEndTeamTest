@@ -68,7 +68,6 @@ var FeTest = (function() {
           listings += renderListing(response[i]);
         }
       }
-      console.log(listings);
       dom.listingsContainer.innerHTML = listings;
     }
 
@@ -79,9 +78,19 @@ var FeTest = (function() {
     function renderListing(listing) {
       return '<li><a href="#">'
               + '<div class="image-holder"><img src="' + listing.img + '" /></div>'
-              + '<span class="title">' + listing.title + '</span>'
-              + '<span class="price">' + listing.price + '</span>'
+              + '<div class="details">'
+                + '<span class="title">' + listing.title + '</span>'
+                + '<span class="price">' + formatPrice(listing.price) + '</span>'
+              + '</div>'
             + '</a></li>';
+    }
+
+    function formatPrice(price) {
+      return price.toLocaleString('be-BE', {
+          style: 'currency', 
+          currency: 'EUR', 
+          minimumFractionDigits: 2 
+      });
     }
 
     return {
