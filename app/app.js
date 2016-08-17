@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var Webpack = require('webpack');
+var webpackConfig = require('./config/webpack.config.js');
+
 var app = express();
 
 // view engine setup
@@ -24,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+var compiler = Webpack(webpackConfig);
+app.use(require('webpack-dev-middleware')(compiler));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
