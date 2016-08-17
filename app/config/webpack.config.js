@@ -22,6 +22,11 @@ module.exports = {
         test: /\.jsx$/,
         include: path.resolve('components'),
         loader: 'babel?cacheDirectory'
+      },
+      {
+        test: /\.less$/,
+        include: path.resolve('less'),
+        loader: "style!css!less"
       }
     ]
   },

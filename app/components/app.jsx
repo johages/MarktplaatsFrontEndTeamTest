@@ -4,6 +4,10 @@ import {Provider} from 'react-redux';
 import configureStore from 'datamodel/createStore';
 import Carousel from 'components/carousel';
 
+import baseStyles from 'less/base.less';
+
+console.log(baseStyles);
+
 export default class App extends Component {
   render() {   
     return (

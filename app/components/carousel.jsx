@@ -12,7 +12,7 @@ import { test } from 'datamodel/reducers/carousel';
 export default class Carousel extends Component {
   render() {   
     return (
-      <div>Hello App {this.props.carousel.get('value')} <button onClick={this.props.test}>++</button></div>
+      <div className="hello">Hello App {this.props.carousel.get('value')} <button onClick={this.props.test}>++</button></div>
     );
   }
 };
