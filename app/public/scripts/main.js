@@ -1,3 +1,6 @@
+/**
+ @namespace Contains code related to the Front End Test
+ */
 var FeTest = (function() {
 
   /**
@@ -40,13 +43,85 @@ var FeTest = (function() {
   })();
 
   /**
+   * @name Animate
+   * Animates object through setIntervals
+   */
+  var Animate = (function() {
+    var interval;
+
+    function startInterval(options) {
+      clearPreviousInterval();
+      var callback = createIntervalCallback(options);
+      interval = setInterval(callback, options.speed);
+    }
+
+    function clearPreviousInterval() {
+      clearInterval(interval);
+    }
+
+    function createIntervalCallback(options) {
+      var position = getPosition(options);
+
+      return function() {
+        if (hitEnd(position, options) === true) {
+          clearInterval(interval);
+        } else {
+          position = updatePosition(position, options);
+          updateStyle(position, options);
+        }
+      }
+    }
+
+    function updatePosition(position, options) {
+      if (options.increment === true) {
+        return ++position;
+      } else {
+        return --position;
+      }
+    }
+
+    function getPosition(options) {
+      var position = options.target.style[options.styling].replace('px', '');
+      position = parseInt(position);
+      return isNaN(position) !== true ? position : 0;
+    }
+
+    function updateStyle(position, options) {
+        options.target.style[options.styling] = position + 'px';
+    }
+
+    function hitEnd(position, options) {
+      return (position >= options.max && options.increment === true) || (position <= options.max && options.increment === false);
+    }
+
+    return {
+      /**
+      * @name init
+      * Initializes the animation
+      * @constructor
+      * @param {Object} options Object of options for animation
+      * @param {Object} options.target Target dom element
+      * @param {Number} options.max Number representing the end result
+      * @param {String} options.styling String of key for dom element styling
+      * @param {Boolean} options.increment Boolean to determine to increment or decrement
+      * @param {Number} options.speed Speed of animation in milliseconds
+      */
+      init: function(options) {
+        startInterval(options);
+      }
+    }
+  })();
+
+  /**
    * @name Carousel
    * Renders the carousel of listings with navigation functionality
    */
   var Carousel = (function() {
     var dom = {},
         currentListing = 0,
-        filter = 'cars';
+        filter = 'cars',
+        listingWidth = 312,
+        numberOfListings = 0;
 
     function cache() {
       dom.buttons = {
@@ -57,17 +132,62 @@ var FeTest = (function() {
     }
 
     function bindListeners() {
-      dom.buttons.next.addEventListener('click', nextListings);
-      dom.buttons.last.addEventListener('click', lastListings);
+      dom.buttons.next.addEventListener('click', nextListing);
+      dom.buttons.last.addEventListener('click', lastListing);
     }
 
-    function nextListings(e) {
+    function nextListing(e) {
       e.preventDefault();
+
+      if(currentListing < (numberOfListings - 1)) {
+        currentListing++;
+        animateSlide(5, false);
+        updateButtons();
+      }
     }
 
-    function lastListings(e) {
+    function lastListing(e) {
       e.preventDefault();
-      currentListing = 0;
+      if (currentListing !== 0) {
+        currentListing = 0;
+        animateSlide(1, true);
+        updateButtons();
+      }
+    }
+
+    function updateButtons() {
+      if (currentListing >= (numberOfListings - 1)) {
+        disableButton(dom.buttons.next);
+      } else {
+        activateButton(dom.buttons.next);
+      }
+      if (currentListing === 0) {
+        disableButton(dom.buttons.last);
+      } else {
+        activateButton(dom.buttons.last);
+      }
+    }
+
+    function disableButton(button) {
+      button.className += ' disabled';
+    }
+
+    function activateButton(button) {
+      button.className = button.className.replace(' disabled', '');
+    }
+
+    function animateSlide(speed, increment) {
+      FeTest.Animate.init({
+        target: dom.listingsContainer,
+        max: getMarginLeft(),
+        styling: 'marginLeft',
+        increment: increment,
+        speed: speed,
+      });
+    }
+
+    function getMarginLeft() {
+      return (currentListing * listingWidth) * -1;
     }
 
     function getListings() {
@@ -81,10 +201,16 @@ var FeTest = (function() {
       var listings = '';
       for (var i = 0; response.length > i; i++) {
         if (listingMeetsFilter(response[i]) === true) {
+          numberOfListings++;
           listings += renderListing(response[i]);
         }
       }
       dom.listingsContainer.innerHTML = listings;
+      setContainerWidth();
+    }
+
+    function setContainerWidth() {
+      dom.listingsContainer.style.width = (numberOfListings * listingWidth) + 'px';
     }
 
     function listingMeetsFilter(listing) { 
@@ -125,6 +251,7 @@ var FeTest = (function() {
 
   return {
     Carousel: Carousel,
-    SimpleAjax: SimpleAjax
+    SimpleAjax: SimpleAjax,
+    Animate: Animate
   };
 })();

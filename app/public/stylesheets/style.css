@@ -31,7 +31,12 @@ a {
   font-size: 25px;
   position: absolute;
   text-decoration: none;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   z-index: 100;
+}
+
+#Carousel nav a.disabled {
+  color: #cccccc;
 }
 
 #Carousel #Last {
@@ -42,10 +47,17 @@ a {
   right: 0;
 }
 
-#Listings {
+#ListingsContainer, #Listings {
   height: 260px;
   overflow: hidden;
+}
+
+#ListingsContainer {
   margin: 0 auto;
+}
+
+#Listings {
+  margin: 0;
   padding: 0;
 }
 
@@ -123,35 +135,35 @@ a {
 
 /* width for 1 listing*/
 @media (min-width: 332px) {
-  #Listings {
+  #ListingsContainer {
     max-width: 312px;
   }
 }
 
 /* width for 2 listings*/
 @media (min-width: 644px) {
-  #Listings {
+  #ListingsContainer {
     max-width: 624px;
   }
 }
 
 /* width for 3 listings*/
 @media (min-width: 956px) {
-  #Listings {
+  #ListingsContainer {
     max-width: 936px;
   }
 }
 
 /* width for 4 listings*/
 @media (min-width: 1268px) {
-  #Listings {
+  #ListingsContainer {
     max-width: 1248px;
   }
 }
 
 /* width for 5 listings*/
 @media (min-width: 1580px) {
-  #Listings {
+  #ListingsContainer {
     max-width: 1560px;
   }
 }
@@ -159,13 +171,11 @@ a {
 /* width for 1 listing*/
 /* supports down to 320px */
 @media (max-width: 331px) {
-  #Listings {
+  #ListingsContainer {
     max-width: 302px;
-  }
-  #Listings li {
-    margin: 5px 0;
   }
   #Carousel {
     padding: 5px 4px;
+    margin: 0;
   }
 }
