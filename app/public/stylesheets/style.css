@@ -18,19 +18,28 @@ a {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
 }
 
 #Carousel nav {
   line-height: 250px;
+  position: relative;
+}
+
+#Carousel nav a {
+  font-size: 25px;
+  position: absolute;
+  text-decoration: none;
+  z-index: 100;
 }
 
 #Carousel #Last {
-  float: left;
+  left: 0;
 }
 
 #Carousel #Next {
-  float: right;
+  right: 0;
 }
 
 #Listings {
