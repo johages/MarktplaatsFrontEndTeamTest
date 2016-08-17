@@ -118,3 +118,54 @@ a {
   position: relative;
   top: 50%;
 }
+
+/* setting media queries for how many listings to display instead of javascript */
+
+/* width for 1 listing*/
+@media (min-width: 332px) {
+  #Listings {
+    max-width: 312px;
+  }
+}
+
+/* width for 2 listings*/
+@media (min-width: 644px) {
+  #Listings {
+    max-width: 624px;
+  }
+}
+
+/* width for 3 listings*/
+@media (min-width: 956px) {
+  #Listings {
+    max-width: 936px;
+  }
+}
+
+/* width for 4 listings*/
+@media (min-width: 1268px) {
+  #Listings {
+    max-width: 1248px;
+  }
+}
+
+/* width for 5 listings*/
+@media (min-width: 1580px) {
+  #Listings {
+    max-width: 1560px;
+  }
+}
+
+/* width for 1 listing*/
+/* supports down to 320px */
+@media (max-width: 331px) {
+  #Listings {
+    max-width: 302px;
+  }
+  #Listings li {
+    margin: 5px 0;
+  }
+  #Carousel {
+    padding: 5px 4px;
+  }
+}
