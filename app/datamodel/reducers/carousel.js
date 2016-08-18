@@ -121,7 +121,7 @@ export function loadListings() {
     dispatch({
       type: LOAD_SUCCESS,
       request: request.get('/data/data.json'),
-      callback: err => loadSuccess({hi: 'hello'}),
+      callback: err => loadSuccess,
     });
   };
 }
