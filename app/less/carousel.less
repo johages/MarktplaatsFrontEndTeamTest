@@ -5,6 +5,13 @@
   background: #f6f6f6;
   margin: 5px;
   padding: 5px;
+
+  /* width for 1 listing*/
+  /* supports down to 320px */
+  @media (max-width: 331px) {
+    padding: 5px 4px;
+    margin: 0;
+  }
 }
 
 #ListingsContainer, #Listings {
@@ -13,7 +20,14 @@
 }
 
 #ListingsContainer {
+  .generate-centered-widths(5, 312px, 1, 20px);
   margin: 0 auto;
+
+  /* width for 1 listing*/
+  /* supports down to 320px */
+  @media (max-width: 331px) {
+    max-width: 302px;
+  }
 }
 
 #Listings {

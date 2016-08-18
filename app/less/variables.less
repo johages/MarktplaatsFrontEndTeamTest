@@ -24,24 +24,13 @@
   box-shadow: @h-shadow @v-shadow @blur @spread rgba(@R, @G, @B, @A) @type;
 }
 
-/**
-* @name generate-centered-widths
-* Generates media queries for centering a certain amount of items by setting the item container's width.
-* Loops through the maxNumberOfItems variable, starting at the increment variable
-*
-* @param maxNumberOfItems {number} max number of items you want to loop through
-* @param itemWidth {px} individual width of each item
-* @param increment {number} increments each loop, used as the start point
-* @param itemContainerPadding {px} the padding of the items container, to be used in the max width
-**/
-
 .generate-centered-widths(@maxNumberOfItems, @itemWidth, @increment: 1, @itemContainerPadding: 0px) when (@increment =< @maxNumberOfItems) {
-    @maxWidth: (@itemWidth * @increment) + @itemContainerPadding;
-    @setWidth: @itemWidth * @increment;
+  @maxWidth: (@itemWidth * @increment) + @itemContainerPadding;
+  @setWidth: @itemWidth * @increment;
 
-    @media (min-width: (@maxWidth)) {
-        width: @setWidth;
-    }
+  @media (min-width: (@maxWidth)) {
+    width: @setWidth;
+  }
 
-    .generate-centered-widths(@maxNumberOfItems, @itemWidth, (@increment + 1), @itemContainerPadding);
+  .generate-centered-widths(@maxNumberOfItems, @itemWidth, (@increment + 1), @itemContainerPadding);
 }
