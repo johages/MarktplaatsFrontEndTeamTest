@@ -20,7 +20,25 @@ const initialState = Immutable.fromJS({
         "price": 460022,
         "img":"images/car2.jpg",
         "category": "cars"
-      }
+      },
+      {
+        "title": "Fiat Panda 0.9 Twinair 63KW 2012 Rood",
+        "price": 120022,
+        "img":"images/car3.jpg",
+        "category": "cars"
+      },
+      {
+        "title": "2010 Raptor SVT Prins Lpg-G3 400L tank Decemberactie!!!",
+        "price": 423022,
+        "img":"images/car4.jpg",
+        "category": "cars"
+      },
+      {
+        "title": "Audi A4 Avant 2.0 TDI Quattro. Pro L. S",
+        "price": 410022,
+        "img":"images/car4.jpg",
+        "category": "cars"
+      },
     ],
   loading: false,
   loaded: false,

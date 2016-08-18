@@ -19,6 +19,10 @@ export default class Carousel extends Component {
     this.props.loadListings();
   }
 
+  componentWillReceiveProps(props) {
+    console.log(props);
+  }
+
   renderListings() {
     return this.props.carousel.get('listings').map((listing, index) => {
       return (<Listing listing={listing} key={index} />);
@@ -26,11 +30,13 @@ export default class Carousel extends Component {
   }
 
   render() {
+    console.log(this.props.carousel.get('currentListing'));
+    let listingsClassNames = `listings-at-${this.props.carousel.get('currentListing')}`;
     return (
       <div id="Carousel">
         <Nav />
         <div id="ListingsContainer">
-          <ul id="Listings">
+          <ul id="Listings" className={listingsClassNames}>
             {this.renderListings()}
           </ul>
         </div>

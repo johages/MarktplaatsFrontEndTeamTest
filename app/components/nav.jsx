@@ -20,6 +20,18 @@ export default class Listing extends Component {
     return this.props.carousel.get('currentListing') === (this.props.carousel.get('listings').size - 1);
   }
 
+  nextListing = () => {
+    if (this.atLastListing() !== true) {
+      this.props.nextListing();
+    }
+  }
+
+  lastListing = () => {
+    if (this.atFirstListing() !== true) {
+      this.props.lastListing();
+    }
+  }
+
   render() {   
     let classNames = {
       last: 'icon-left-open',
@@ -36,8 +48,8 @@ export default class Listing extends Component {
 
     return (
       <nav>
-        <a href="#" onClick={this.props.lastListing} className={classNames.last} id="Last"></a>
-        <a href="#" onClick={this.props.nextListing} className={classNames.next} id="Next"></a>
+        <a href="#" onClick={this.lastListing} className={classNames.last} id="Last"></a>
+        <a href="#" onClick={this.nextListing} className={classNames.next} id="Next"></a>
       </nav>
     );
   }
