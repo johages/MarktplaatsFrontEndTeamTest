@@ -6,8 +6,6 @@ import Carousel from 'components/carousel';
 
 import baseStyles from 'less/base.less';
 
-console.log(baseStyles);
-
 export default class App extends Component {
   render() {   
     return (

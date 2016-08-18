@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import styles from 'less/listing.less';
 
 export default class Listing extends Component {
@@ -7,16 +7,16 @@ export default class Listing extends Component {
     listing: React.PropTypes.object.isRequired,
   }
 
-  render() {   
+  render() {
     return (
       <li>
         <a href="#">
           <div className="image-holder">
-            <img src={this.props.listing.img} />
+            <img src={this.props.listing.get('img')} />
           </div>
           <div className="details">
-            <span className="title">{this.props.listing.title}</span>
-            <span className="price">{this.props.listing.price}</span>
+            <span className="title">{this.props.listing.get('title')}</span>
+            <span className="price">{this.props.listing.get('price')}</span>
           </div>
         </a>
       </li>
