@@ -4,6 +4,8 @@ import request from 'superagent';
 const LOAD_SUCCESS = 'carousel/LOAD_SUCCESS';
 const LOADING = 'carousel/LOADING';
 const LOAD_FAIL = 'carousel/LOAD_SUCCESS';
+const NEXT_LISTING = 'carousel/NEXT_LISTING';
+const LAST_LISTING = 'carousel/LAST_LISTING';
 
 const initialState = Immutable.fromJS({
   listings: [
@@ -22,7 +24,7 @@ const initialState = Immutable.fromJS({
     ],
   loading: false,
   loaded: false,
-  currentAd: 0,
+  currentListing: 0,
 });
 
 export default function reducer(state = initialState, action = {}) {
@@ -42,6 +44,14 @@ export default function reducer(state = initialState, action = {}) {
       return state.merge({
         loading: false,
         loaded: false,
+      });
+    case NEXT_LISTING:
+      return state.merge({
+        currentListing: state.get('currentListing') + 1,
+      });
+    case LAST_LISTING:
+      return state.merge({
+        currentListing: 0,
       });
     default:
       return state;
@@ -66,6 +76,18 @@ function loadSuccess(data) {
   return {
     type: LOAD_SUCCESS,
     data,
+  };
+}
+
+export function nextListing() {
+  return {
+    type: NEXT_LISTING,
+  };
+}
+
+export function lastListing() {
+  return {
+    type: LAST_LISTING,
   };
 }
 
