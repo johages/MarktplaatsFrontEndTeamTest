@@ -8,38 +8,7 @@ const NEXT_LISTING = 'carousel/NEXT_LISTING';
 const LAST_LISTING = 'carousel/LAST_LISTING';
 
 const initialState = Immutable.fromJS({
-  listings: [
-      {
-        "title": "Volkswagen Passat Variant 1.9 TDI Highline AUTOMAAT KAPOTa title",
-        "price": 460022,
-        "img":"images/car1.jpg",
-        "category": "cars"
-      },
-      {
-        "title": "Skoda Octavia Octavia Combi 2.0 Tdi Elegance Automaat Dsg Clima Lmv Half Leder",
-        "price": 460022,
-        "img":"images/car2.jpg",
-        "category": "cars"
-      },
-      {
-        "title": "Fiat Panda 0.9 Twinair 63KW 2012 Rood",
-        "price": 120022,
-        "img":"images/car3.jpg",
-        "category": "cars"
-      },
-      {
-        "title": "2010 Raptor SVT Prins Lpg-G3 400L tank Decemberactie!!!",
-        "price": 423022,
-        "img":"images/car4.jpg",
-        "category": "cars"
-      },
-      {
-        "title": "Audi A4 Avant 2.0 TDI Quattro. Pro L. S",
-        "price": 410022,
-        "img":"images/car4.jpg",
-        "category": "cars"
-      },
-    ],
+  listings: [],
   loading: false,
   loaded: false,
   currentListing: 0,
@@ -49,7 +18,7 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_SUCCESS:
       return state.merge({
-        listings: actions.body,
+        listings: action.payload.listings,
         loading: false,
         loaded: true,
       });
@@ -107,18 +76,26 @@ export function lastListing() {
   };
 }
 
-export function loadListings() {
-  return (dispatch, getState) => {
-    let carousel = getState().getIn(['carousel']);
+function isInFilter(listing) {
+  return listing.category === 'cars';
+}
 
-    if (carousel.get('loading') === true || carousel.get('loaded') === true) { return; }
+function filterListings(listings) {
+  return listings.filter(isInFilter);
+}
 
-    dispatch(loading());
-
-    dispatch({
-      type: LOAD_SUCCESS,
-      request: request.get('/data/data.json'),
-      callback: err => loadSuccess,
+function getData() {
+  return new Promise(function(resolve, reject) {
+    request.get('/data/data.json')
+      .end((err, res) => { 
+        resolve({listings: filterListings(res.body)}); 
     });
-  };
+  });
+}
+
+export function loadListings() {
+  return {
+    promise: getData(),
+    types: [LOADING, LOAD_SUCCESS, LOAD_FAIL],
+  }
 }

@@ -16,7 +16,7 @@ import styles from 'less/carousel.less';
 export default class Carousel extends Component {
 
   componentDidMount() {
-    // this.props.loadListings();
+    this.props.loadListings();
   }
 
   renderListings() {
