@@ -77,7 +77,6 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 function loading() {
-  console.log('loading');
   return {
     type: LOADING,
   };
@@ -90,7 +89,6 @@ function loadFailure() {
 }
 
 function loadSuccess(data) {
-  console.log('loaded');
   return {
     type: LOAD_SUCCESS,
     data,
@@ -112,7 +110,6 @@ export function lastListing() {
 export function loadListings() {
   return (dispatch, getState) => {
     let carousel = getState().getIn(['carousel']);
-    console.log(carousel);
 
     if (carousel.get('loading') === true || carousel.get('loaded') === true) { return; }
 
