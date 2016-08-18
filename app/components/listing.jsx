@@ -7,6 +7,14 @@ export default class Listing extends Component {
     listing: React.PropTypes.object.isRequired,
   }
 
+  renderPrice() {
+    return this.props.listing.get('price').toLocaleString('be-BE', {
+      style: 'currency', 
+      currency: 'EUR', 
+      minimumFractionDigits: 2 
+    });
+  }
+
   render() {
     return (
       <li>
@@ -16,7 +24,7 @@ export default class Listing extends Component {
           </div>
           <div className="details">
             <span className="title">{this.props.listing.get('title')}</span>
-            <span className="price">{this.props.listing.get('price')}</span>
+            <span className="price">{this.renderPrice()}</span>
           </div>
         </a>
       </li>
