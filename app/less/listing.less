@@ -1,0 +1,58 @@
+@import "variables.less";
+
+#Listings li {
+  .border-radius();
+  .box-shadow(1px, 1px, 5px, 0px, 66, 66, 66, 0.1);
+  border: 1px solid #f6f6f6;
+  background: #ffffff;
+  display: block;
+  float: left;
+  height: 250px;
+  list-style: none;
+  overflow: hidden;
+  margin: 5px;
+  max-width: 1560px;
+  width: 300px;
+
+  a {
+    text-decoration: none;
+  }
+
+  .details {
+    padding: 10px 15px;
+  }
+
+  .title {
+    color: #000066;
+    display: block;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 5px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .price {
+    color: #a5d14a;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 17px;
+  }
+
+  .image-holder {
+    border-bottom: 1px solid #f6f6f6;
+    position: relative;
+    overflow: hidden;
+    height: 175px;
+  }
+
+  img {
+    .translate(-50%, -50%);
+    left: 50%;
+    max-width: 300px;
+    max-height: 300px;
+    position: relative;
+    top: 50%;
+  }
+}

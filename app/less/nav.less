@@ -1,0 +1,23 @@
+@import "variables.less";
+
+#Last {
+  left: 0;
+}
+
+#Next {
+  right: 0;
+}
+
+nav {
+  a {
+    .text-shadow(0px, 0px, 5px, #000000, 0.3);
+    font-size: 25px;
+    position: absolute;
+    text-decoration: none;
+    z-index: 100;
+
+    &.disabled {
+      color: #cccccc;
+    }
+  }
+}

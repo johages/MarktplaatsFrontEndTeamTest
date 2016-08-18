@@ -1,0 +1,47 @@
+
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.text-shadow (@angle: 0, @distance: 1px, @blur: 3px, @color: #000000, @opacity: 0.25) {
+  text-shadow: @angle @distance @blur rgba(red(@color), green(@color), blue(@color), @opacity);
+}
+
+.translate(@x, @y) {
+  -webkit-transform: translate(@x, @y);
+  -ms-transform: translate(@x, @y);
+  transform: translate(@x, @y);
+}
+
+.box-shadow(@h-shadow: 0px, @v-shadow: 0px, @blur: 0px, @spread: 0px, @R, @G, @B, @A, @type: ~'') {
+  -webkit-box-shadow: @h-shadow @v-shadow @blur @spread rgba(@R, @G, @B, @A) @type;
+  -moz-box-shadow: @h-shadow @v-shadow @blur @spread rgba(@R, @G, @B, @A) @type;
+  box-shadow: @h-shadow @v-shadow @blur @spread rgba(@R, @G, @B, @A) @type;
+}
+
+/**
+* @name generate-centered-widths
+* Generates media queries for centering a certain amount of items by setting the item container's width.
+* Loops through the maxNumberOfItems variable, starting at the increment variable
+*
+* @param maxNumberOfItems {number} max number of items you want to loop through
+* @param itemWidth {px} individual width of each item
+* @param increment {number} increments each loop, used as the start point
+* @param itemContainerPadding {px} the padding of the items container, to be used in the max width
+**/
+
+.generate-centered-widths(@maxNumberOfItems, @itemWidth, @increment: 1, @itemContainerPadding: 0px) when (@increment =< @maxNumberOfItems) {
+    @maxWidth: (@itemWidth * @increment) + @itemContainerPadding;
+    @setWidth: @itemWidth * @increment;
+
+    @media (min-width: (@maxWidth)) {
+        width: @setWidth;
+    }
+
+    .generate-centered-widths(@maxNumberOfItems, @itemWidth, (@increment + 1), @itemContainerPadding);
+}
